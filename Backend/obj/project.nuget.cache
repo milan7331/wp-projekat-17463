@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "j+h6D+Q9JAD6UMYD1b7qbe1jWMYNWHHPHlBbzEjcSFtLaLvTAicCIR0kE9/YLc69M+i71qn7TTZFX+0K/sehUg==",
+  "dgSpecHash": "uAc3Ppm/r4hfZ8LDZtnsCAeUVcpyE7ej87VDg0JdbjSG1TSNgWUKkmCyTdhOzCNtpTFyk3/oFRA9HvgAeBFL5g==",
   "success": true,
-  "projectFilePath": "/home/milan/Documents/Repositories/WP_PROJEKAT_17463/Backend/Backend.csproj",
+  "projectFilePath": "/home/milan/Documents/Repositories/wp-projekat-17463/Backend/Backend.csproj",
   "expectedPackageFiles": [
     "/home/milan/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/home/milan/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",

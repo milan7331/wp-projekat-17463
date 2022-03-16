@@ -4,14 +4,16 @@ using Backend.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Backend.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    partial class StoreContextModelSnapshot : ModelSnapshot
+    [Migration("20220316034034_V4")]
+    partial class V4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -174,21 +176,6 @@ namespace Backend.Migrations
                     b.ToTable("UserAccount");
                 });
 
-            modelBuilder.Entity("PCPartPCStore", b =>
-                {
-                    b.Property<int>("InStoresID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PartsAvailableID")
-                        .HasColumnType("int");
-
-                    b.HasKey("InStoresID", "PartsAvailableID");
-
-                    b.HasIndex("PartsAvailableID");
-
-                    b.ToTable("PCPartPCStore");
-                });
-
             modelBuilder.Entity("Backend.Models.Order", b =>
                 {
                     b.HasOne("Backend.Models.UserAccount", "Buyer")
@@ -210,21 +197,6 @@ namespace Backend.Migrations
                     b.Navigation("FromStore");
 
                     b.Navigation("Part");
-                });
-
-            modelBuilder.Entity("PCPartPCStore", b =>
-                {
-                    b.HasOne("Backend.Models.PCStore", null)
-                        .WithMany()
-                        .HasForeignKey("InStoresID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Backend.Models.PCPart", null)
-                        .WithMany()
-                        .HasForeignKey("PartsAvailableID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Backend.Models.UserAccount", b =>

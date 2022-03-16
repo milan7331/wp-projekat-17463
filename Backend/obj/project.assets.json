@@ -5947,11 +5947,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/milan/Documents/Repositories/WP_PROJEKAT_17463/Backend/Backend.csproj",
+      "projectUniqueName": "/home/milan/Documents/Repositories/wp-projekat-17463/Backend/Backend.csproj",
       "projectName": "Backend",
-      "projectPath": "/home/milan/Documents/Repositories/WP_PROJEKAT_17463/Backend/Backend.csproj",
+      "projectPath": "/home/milan/Documents/Repositories/wp-projekat-17463/Backend/Backend.csproj",
       "packagesPath": "/home/milan/.nuget/packages/",
-      "outputPath": "/home/milan/Documents/Repositories/WP_PROJEKAT_17463/Backend/obj/",
+      "outputPath": "/home/milan/Documents/Repositories/wp-projekat-17463/Backend/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/milan/.nuget/NuGet/NuGet.Config"

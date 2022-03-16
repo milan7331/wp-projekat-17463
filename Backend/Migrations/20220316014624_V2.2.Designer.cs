@@ -4,14 +4,16 @@ using Backend.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Backend.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    partial class StoreContextModelSnapshot : ModelSnapshot
+    [Migration("20220316014624_V2.2")]
+    partial class V22
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,6 +65,9 @@ namespace Backend.Migrations
                         .HasColumnName("ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("PCStoreID")
+                        .HasColumnType("int");
+
                     b.Property<int>("Price")
                         .HasColumnType("int")
                         .HasColumnName("Price");
@@ -80,10 +85,13 @@ namespace Backend.Migrations
                         .HasColumnName("ProductName");
 
                     b.Property<int>("SerialNumber")
+                        .HasMaxLength(5)
                         .HasColumnType("int")
                         .HasColumnName("SerialNumber");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("PCStoreID");
 
                     b.ToTable("PCPart");
                 });
@@ -115,6 +123,7 @@ namespace Backend.Migrations
                         .HasColumnName("StoreMailAdress");
 
                     b.Property<int>("StorePhoneNumber")
+                        .HasMaxLength(15)
                         .HasColumnType("int")
                         .HasColumnName("StorePhoneNumber");
 
@@ -162,6 +171,7 @@ namespace Backend.Migrations
                         .HasColumnName("MailAddress");
 
                     b.Property<int>("PhoneNumber")
+                        .HasMaxLength(15)
                         .HasColumnType("int")
                         .HasColumnName("PhoneNumber");
 
@@ -172,21 +182,6 @@ namespace Backend.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("UserAccount");
-                });
-
-            modelBuilder.Entity("PCPartPCStore", b =>
-                {
-                    b.Property<int>("InStoresID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PartsAvailableID")
-                        .HasColumnType("int");
-
-                    b.HasKey("InStoresID", "PartsAvailableID");
-
-                    b.HasIndex("PartsAvailableID");
-
-                    b.ToTable("PCPartPCStore");
                 });
 
             modelBuilder.Entity("Backend.Models.Order", b =>
@@ -212,19 +207,16 @@ namespace Backend.Migrations
                     b.Navigation("Part");
                 });
 
-            modelBuilder.Entity("PCPartPCStore", b =>
+            modelBuilder.Entity("Backend.Models.PCPart", b =>
                 {
                     b.HasOne("Backend.Models.PCStore", null)
-                        .WithMany()
-                        .HasForeignKey("InStoresID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("PartsInStore")
+                        .HasForeignKey("PCStoreID");
+                });
 
-                    b.HasOne("Backend.Models.PCPart", null)
-                        .WithMany()
-                        .HasForeignKey("PartsAvailableID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+            modelBuilder.Entity("Backend.Models.PCStore", b =>
+                {
+                    b.Navigation("PartsInStore");
                 });
 
             modelBuilder.Entity("Backend.Models.UserAccount", b =>

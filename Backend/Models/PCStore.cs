@@ -17,8 +17,8 @@ namespace Backend.Models
         public string Name { get; set; }
 
         [Required]
+        [Phone]
         [Column("StorePhoneNumber")]
-        [MaxLength(15)]
         public int StorePhoneNumber { get; set; }
 
         [Required]
@@ -28,11 +28,11 @@ namespace Backend.Models
 
         [Required]
         [Column("StoreMailAdress")]
+        [EmailAddress]
         [MaxLength(100)]
         public string StoreMailAdress { get; set; }
 
-        [Column("PartsInStore")]
-        public virtual List<PCPart> PartsInStore { get; set; }
-
+        [Column("PartsAvailable")]
+        public List<PCPart> PartsAvailable { get; set; }
     }
 }

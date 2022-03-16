@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Backend.Models
 {
@@ -17,6 +18,7 @@ namespace Backend.Models
         [Column("Price")]
         public int Price { get; set; }
 
+        [JsonIgnore]
         [Required]
         [Column("Buyer")]
         public UserAccount Buyer { get; set; }

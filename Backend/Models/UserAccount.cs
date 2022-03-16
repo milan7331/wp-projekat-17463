@@ -37,12 +37,13 @@ namespace Backend.Models
         public int PostalCode { get; set; }
 
         [Required]
+        [Phone]
         [Column("PhoneNumber")]
-        [MaxLength(15)]
         public int PhoneNumber { get; set; }
 
         [Required]
         [Column("MailAddress")]
+        [EmailAddress]
         [MaxLength(320)]
         public string MailAddress { get; set; }
 

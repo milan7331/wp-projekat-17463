@@ -4,14 +4,16 @@ using Backend.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Backend.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    partial class StoreContextModelSnapshot : ModelSnapshot
+    [Migration("20220316002719_V2.1")]
+    partial class V21
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,6 +82,7 @@ namespace Backend.Migrations
                         .HasColumnName("ProductName");
 
                     b.Property<int>("SerialNumber")
+                        .HasMaxLength(5)
                         .HasColumnType("int")
                         .HasColumnName("SerialNumber");
 
@@ -115,6 +118,7 @@ namespace Backend.Migrations
                         .HasColumnName("StoreMailAdress");
 
                     b.Property<int>("StorePhoneNumber")
+                        .HasMaxLength(15)
                         .HasColumnType("int")
                         .HasColumnName("StorePhoneNumber");
 
@@ -162,6 +166,7 @@ namespace Backend.Migrations
                         .HasColumnName("MailAddress");
 
                     b.Property<int>("PhoneNumber")
+                        .HasMaxLength(15)
                         .HasColumnType("int")
                         .HasColumnName("PhoneNumber");
 
@@ -176,15 +181,15 @@ namespace Backend.Migrations
 
             modelBuilder.Entity("PCPartPCStore", b =>
                 {
-                    b.Property<int>("InStoresID")
+                    b.Property<int>("AvailableInStoresID")
                         .HasColumnType("int");
 
-                    b.Property<int>("PartsAvailableID")
+                    b.Property<int>("PartsInStoreID")
                         .HasColumnType("int");
 
-                    b.HasKey("InStoresID", "PartsAvailableID");
+                    b.HasKey("AvailableInStoresID", "PartsInStoreID");
 
-                    b.HasIndex("PartsAvailableID");
+                    b.HasIndex("PartsInStoreID");
 
                     b.ToTable("PCPartPCStore");
                 });
@@ -216,13 +221,13 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Models.PCStore", null)
                         .WithMany()
-                        .HasForeignKey("InStoresID")
+                        .HasForeignKey("AvailableInStoresID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Backend.Models.PCPart", null)
                         .WithMany()
-                        .HasForeignKey("PartsAvailableID")
+                        .HasForeignKey("PartsInStoreID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

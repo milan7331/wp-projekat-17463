@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = Backend
-build_property.ProjectDir = /home/milan/Documents/Repositories/WP_PROJEKAT_17463/Backend/
+build_property.ProjectDir = /home/milan/Documents/Repositories/wp-projekat-17463/Backend/

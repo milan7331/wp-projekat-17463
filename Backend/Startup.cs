@@ -29,6 +29,21 @@ namespace Backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<StoreContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PCStore")));
+            services.AddCors(options => 
+            {
+                /*options.AddPolicy("CORS", builder => 
+                {
+                    builder.WithOrigins(new string[]
+                    {
+                        "http://localhost:8080",
+                        "https://localhost:8080",
+                        "http://127.0.0.1:8080",
+                        "https://127.0.0.1.8080"
+                    })
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+                });*/
+            });
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -49,6 +64,8 @@ namespace Backend
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("CORS");
 
             app.UseAuthorization();
 

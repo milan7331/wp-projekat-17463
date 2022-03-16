@@ -13,7 +13,7 @@ namespace Backend.Models
 
         [Required]
         [Column("SerialNumber")]
-        [MaxLength(5)]
+        [Range(0,10000)]
         public int SerialNumber { get; set; }
 
         [Required]
@@ -22,11 +22,16 @@ namespace Backend.Models
         public string ProductName { get; set; }
 
         [Required]
+        [Column("ProductCategory")]
+        [MaxLength(30)]
+        public string ProductCategory { get; set; }
+
+        [Required]
         [Column("Price")]
         [Range(0,500000)]
         public int Price { get; set; }
 
-        [Column("AvailableInStores")]
-        public List<PCStore> AvailableInStores { get; set; }   
+        [Column("InStores")]
+        public List<PCStore> InStores { get; set; }
     }
 }
