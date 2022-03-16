@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Backend.Models
 {
@@ -17,7 +18,6 @@ namespace Backend.Models
         public string Name { get; set; }
 
         [Required]
-        [Phone]
         [Column("StorePhoneNumber")]
         public int StorePhoneNumber { get; set; }
 
@@ -32,6 +32,7 @@ namespace Backend.Models
         [MaxLength(100)]
         public string StoreMailAdress { get; set; }
 
+        [JsonIgnore]
         [Column("PartsAvailable")]
         public List<PCPart> PartsAvailable { get; set; }
     }

@@ -31,18 +31,22 @@ namespace Backend
             services.AddDbContext<StoreContext>(options => options.UseSqlServer(Configuration.GetConnectionString("PCStore")));
             services.AddCors(options => 
             {
-                /*options.AddPolicy("CORS", builder => 
+                options.AddPolicy("CORS", builder => 
                 {
                     builder.WithOrigins(new string[]
                     {
                         "http://localhost:8080",
                         "https://localhost:8080",
                         "http://127.0.0.1:8080",
-                        "https://127.0.0.1.8080"
+                        "https://127.0.0.1.8080",
+                        "http://localhost:5001",
+                        "https://localhost:5001",
+                        "http://127.0.0.1:5001",
+                        "https://127.0.0.1.5001"
                     })
                     .AllowAnyHeader()
                     .AllowAnyMethod();
-                });*/
+                });
             });
             services.AddControllers();
             services.AddSwaggerGen(c =>

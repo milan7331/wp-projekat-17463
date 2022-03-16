@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Backend.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Backend.Controllers
@@ -21,9 +22,13 @@ namespace Backend.Controllers
 
         [Route("ReturnAllOrders")]
         [HttpGet]
-        public ActionResult ReturnAllOrders()
+        public async Task<ActionResult> ReturnAllOrders()
         {
-            return Ok(Context.Orders);
+            var orders = await Context.Orders
+                .Include(p => p.Buyer)
+                .Include(p => p.Part)
+                .Include(p => p.FromStore).ToListAsync();
+            return Ok(orders);
         }
 
         [Route("ReturnOrder/{id}")]
@@ -53,7 +58,7 @@ namespace Backend.Controllers
         {
             if(order.Quantity <= 0)
                 return BadRequest("Pogrešno uneta količina!");
-            if(order.Buyer == null || order.FromStore == null || order.Part == null || order.Price <= 0)
+            if(/*order.Buyer == null ||*/ order.FromStore == null || order.Part == null || order.Price <= 0)
                 return BadRequest("Porudžbina nema validne informcije");
             try
             {
@@ -65,6 +70,41 @@ namespace Backend.Controllers
             {
                 return BadRequest(e.Message);
             }
+        }
+
+        [Route("AddOrder/{quantity}/{price}/{buyerid}/{partid}/{storeid}")]
+        [HttpPost]
+        public async Task<ActionResult> AddOrderFromRoute(int quantity, int price, int buyerid, int partid, int storeid)
+        {
+            if(quantity <= 0)
+                return BadRequest("Pogrešno uneta količina!");
+            if(price <= 0)
+                return BadRequest("Pogrešno izračunata cena!");
+            if(buyerid <= 0 || partid <= 0 || storeid <= 0)
+                return BadRequest("Pogrešan ID za kupca/deo/prodavnicu!");
+            try
+            {
+                    var buyer = await Context.UserAccounts.FindAsync(buyerid);
+                    var part = await Context.Parts.FindAsync(partid);
+                    var store = await Context.Stores.FindAsync(storeid);
+
+                    Order order = new Order
+                    {
+                        Quantity = quantity,
+                        Price = price,
+                        Buyer = buyer,
+                        Part = part,
+                        FromStore = store
+                    };
+
+                    await Context.Orders.AddAsync(order);
+                    await Context.SaveChangesAsync();
+                    return Ok("Porudžbina uspešno uneta u bazu!");
+            }
+            catch(Exception e)
+            {
+                return BadRequest(e.Message);
+            }    
         }
 
         [Route("UpdateOrder")]

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Backend.Models
 {
@@ -31,6 +32,7 @@ namespace Backend.Models
         [Range(0,500000)]
         public int Price { get; set; }
 
+        [JsonIgnore]
         [Column("InStores")]
         public List<PCStore> InStores { get; set; }
     }

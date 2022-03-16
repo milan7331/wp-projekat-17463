@@ -47,7 +47,22 @@ namespace Backend.Controllers
         [Route("ReturnAccountOrders/{id}")]
         public async Task<ActionResult> ReturnAccountOrders(int id)
         {
-            
+            if(id < 0 || Context.UserAccounts.Find(id) == null)
+                return BadRequest("Korisnik nije u bazi!");
+            try
+            {
+                    var orders = await Context.UserAccounts.Where(p => p.ID == id)
+                        .Include(p => p.Orders)
+                        .ThenInclude(p => p.Buyer)
+                        .Include(p => p.Orders)
+                        .ThenInclude(p => p.FromStore)
+                        .ToListAsync();
+                    return Ok(orders);
+            }
+            catch(Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
 
@@ -105,6 +120,30 @@ namespace Backend.Controllers
             {
                 return BadRequest(e.Message);
             }
+        }
+
+        [Route("UpdateUserAccountNewOrder/{userid}/{orderid}")]
+        [HttpPut]
+        public async Task<ActionResult> UpdateAccountOrder(int userid, int orderid)
+        {
+            if(userid < 0 || orderid < 0)
+                return BadRequest("Pogrešan ID!");
+            try
+            {
+                var user = await Context.UserAccounts.FindAsync(userid);
+                var order = await Context.Orders.FindAsync(orderid);
+                if( user == null || order == null)
+                return BadRequest($"Traženi korisnički nalog/porudžbina ne postoji u bazi!");
+                user.Orders.Add(order);
+                Context.UserAccounts.Update(user);
+                await Context.SaveChangesAsync();
+                return Ok("Korisničke porudžbine update!");
+            }
+            catch(Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
         }
 
         [Route("DeleteUserAccount/{id}")]

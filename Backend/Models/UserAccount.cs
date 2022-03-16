@@ -37,7 +37,6 @@ namespace Backend.Models
         public int PostalCode { get; set; }
 
         [Required]
-        [Phone]
         [Column("PhoneNumber")]
         public int PhoneNumber { get; set; }
 

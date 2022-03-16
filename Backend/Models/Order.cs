@@ -19,7 +19,6 @@ namespace Backend.Models
         public int Price { get; set; }
 
         [JsonIgnore]
-        [Required]
         [Column("Buyer")]
         public UserAccount Buyer { get; set; }
 
