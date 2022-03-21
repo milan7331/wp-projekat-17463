@@ -31,9 +31,6 @@ namespace Backend.Models
         [Column("Price")]
         [Range(0,500000)]
         public int Price { get; set; }
-
-        [JsonIgnore]
-        [Column("InStores")]
-        public List<PCStore> InStores { get; set; }
+        
     }
 }

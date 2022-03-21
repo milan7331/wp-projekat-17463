@@ -22,9 +22,9 @@ namespace Backend.Controllers
 
         [Route("ReturnAllParts")]
         [HttpGet]
-        public ActionResult ReturnAllParts()
+        public async Task<ActionResult> ReturnAllParts()
         {
-            return Ok(Context.Parts);
+            return Ok(await Context.Parts.ToListAsync());
         }
 
         [Route("ReturnPart/{serial}")]

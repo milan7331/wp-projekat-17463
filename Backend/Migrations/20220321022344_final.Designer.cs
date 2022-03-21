@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20220316183835_V8")]
-    partial class V8
+    [Migration("20220321022344_final")]
+    partial class final
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,7 +29,7 @@ namespace Backend.Migrations
                         .HasColumnName("ID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("BuyerID")
+                    b.Property<int?>("BuyerID")
                         .HasColumnType("int");
 
                     b.Property<int?>("FromStoreID")
@@ -176,28 +176,11 @@ namespace Backend.Migrations
                     b.ToTable("UserAccount");
                 });
 
-            modelBuilder.Entity("PCPartPCStore", b =>
-                {
-                    b.Property<int>("InStoresID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PartsAvailableID")
-                        .HasColumnType("int");
-
-                    b.HasKey("InStoresID", "PartsAvailableID");
-
-                    b.HasIndex("PartsAvailableID");
-
-                    b.ToTable("PCPartPCStore");
-                });
-
             modelBuilder.Entity("Backend.Models.Order", b =>
                 {
                     b.HasOne("Backend.Models.UserAccount", "Buyer")
                         .WithMany("Orders")
-                        .HasForeignKey("BuyerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BuyerID");
 
                     b.HasOne("Backend.Models.PCStore", "FromStore")
                         .WithMany()
@@ -212,21 +195,6 @@ namespace Backend.Migrations
                     b.Navigation("FromStore");
 
                     b.Navigation("Part");
-                });
-
-            modelBuilder.Entity("PCPartPCStore", b =>
-                {
-                    b.HasOne("Backend.Models.PCStore", null)
-                        .WithMany()
-                        .HasForeignKey("InStoresID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Backend.Models.PCPart", null)
-                        .WithMany()
-                        .HasForeignKey("PartsAvailableID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Backend.Models.UserAccount", b =>

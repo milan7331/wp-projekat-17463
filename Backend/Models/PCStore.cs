@@ -31,9 +31,5 @@ namespace Backend.Models
         [EmailAddress]
         [MaxLength(100)]
         public string StoreMailAdress { get; set; }
-
-        [JsonIgnore]
-        [Column("PartsAvailable")]
-        public List<PCPart> PartsAvailable { get; set; }
     }
 }

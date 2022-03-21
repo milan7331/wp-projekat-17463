@@ -23,7 +23,7 @@ namespace Backend.Controllers
         [Route("ReturnAllAccounts")]
         public ActionResult ReturnAllAccounts()
         {
-            return Ok(Context.UserAccounts);
+            return Ok(Context.UserAccounts.ToList());
         }
 
         [HttpGet]
@@ -34,8 +34,7 @@ namespace Backend.Controllers
                 return BadRequest("Korisnik nije u bazi!");
             try
             {
-                var acc = await Context.UserAccounts.Where(p => p.ID == id).FirstOrDefaultAsync();
-                return Ok(acc);
+                return Ok(await Context.UserAccounts.FindAsync(id));
             }
             catch(Exception e)
             {

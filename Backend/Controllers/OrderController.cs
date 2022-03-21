@@ -40,7 +40,10 @@ namespace Backend.Controllers
             
             try
             {
-                var order = await Context.Orders.FindAsync(id);
+                var order = await Context.Orders.Where(p => p.ID == id)
+                    .Include(p => p.Buyer)
+                    .Include(p => p.Part)
+                    .Include(p => p.FromStore).ToListAsync();
                 if(order == null)
                     return BadRequest("Porudžbina ne postoji u sistemu!");
                 else
@@ -58,7 +61,7 @@ namespace Backend.Controllers
         {
             if(order.Quantity <= 0)
                 return BadRequest("Pogrešno uneta količina!");
-            if(/*order.Buyer == null ||*/ order.FromStore == null || order.Part == null || order.Price <= 0)
+            if(order.FromStore == null || order.Part == null || order.Price <= 0)
                 return BadRequest("Porudžbina nema validne informcije");
             try
             {

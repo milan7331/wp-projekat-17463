@@ -2,7 +2,7 @@
 
 namespace Backend.Migrations
 {
-    public partial class V1 : Migration
+    public partial class final : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,8 +12,9 @@ namespace Backend.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SerialNumber = table.Column<int>(type: "int", maxLength: 5, nullable: false),
+                    SerialNumber = table.Column<int>(type: "int", nullable: false),
                     ProductName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    ProductCategory = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Price = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -28,7 +29,7 @@ namespace Backend.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(35)", maxLength: 35, nullable: false),
-                    StorePhoneNumber = table.Column<int>(type: "int", maxLength: 15, nullable: false),
+                    StorePhoneNumber = table.Column<int>(type: "int", nullable: false),
                     StoreLocation = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     StoreMailAdress = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
@@ -48,36 +49,12 @@ namespace Backend.Migrations
                     City = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
                     Address = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     PostalCode = table.Column<int>(type: "int", nullable: false),
-                    PhoneNumber = table.Column<int>(type: "int", maxLength: 15, nullable: false),
+                    PhoneNumber = table.Column<int>(type: "int", nullable: false),
                     MailAddress = table.Column<string>(type: "nvarchar(320)", maxLength: 320, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserAccount", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PCPartPCStore",
-                columns: table => new
-                {
-                    AvailableInStoresID = table.Column<int>(type: "int", nullable: false),
-                    PartsInStoreID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PCPartPCStore", x => new { x.AvailableInStoresID, x.PartsInStoreID });
-                    table.ForeignKey(
-                        name: "FK_PCPartPCStore_PCPart_PartsInStoreID",
-                        column: x => x.PartsInStoreID,
-                        principalTable: "PCPart",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_PCPartPCStore_Stores_AvailableInStoresID",
-                        column: x => x.AvailableInStoresID,
-                        principalTable: "Stores",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -88,7 +65,7 @@ namespace Backend.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<int>(type: "int", nullable: false),
-                    BuyerID = table.Column<int>(type: "int", nullable: false),
+                    BuyerID = table.Column<int>(type: "int", nullable: true),
                     PartID = table.Column<int>(type: "int", nullable: true),
                     FromStoreID = table.Column<int>(type: "int", nullable: true)
                 },
@@ -112,7 +89,7 @@ namespace Backend.Migrations
                         column: x => x.BuyerID,
                         principalTable: "UserAccount",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -129,11 +106,6 @@ namespace Backend.Migrations
                 name: "IX_Orders_PartID",
                 table: "Orders",
                 column: "PartID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PCPartPCStore_PartsInStoreID",
-                table: "PCPartPCStore",
-                column: "PartsInStoreID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -142,16 +114,13 @@ namespace Backend.Migrations
                 name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "PCPartPCStore");
-
-            migrationBuilder.DropTable(
-                name: "UserAccount");
-
-            migrationBuilder.DropTable(
                 name: "PCPart");
 
             migrationBuilder.DropTable(
                 name: "Stores");
+
+            migrationBuilder.DropTable(
+                name: "UserAccount");
         }
     }
 }

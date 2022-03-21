@@ -174,21 +174,6 @@ namespace Backend.Migrations
                     b.ToTable("UserAccount");
                 });
 
-            modelBuilder.Entity("PCPartPCStore", b =>
-                {
-                    b.Property<int>("InStoresID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PartsAvailableID")
-                        .HasColumnType("int");
-
-                    b.HasKey("InStoresID", "PartsAvailableID");
-
-                    b.HasIndex("PartsAvailableID");
-
-                    b.ToTable("PCPartPCStore");
-                });
-
             modelBuilder.Entity("Backend.Models.Order", b =>
                 {
                     b.HasOne("Backend.Models.UserAccount", "Buyer")
@@ -208,21 +193,6 @@ namespace Backend.Migrations
                     b.Navigation("FromStore");
 
                     b.Navigation("Part");
-                });
-
-            modelBuilder.Entity("PCPartPCStore", b =>
-                {
-                    b.HasOne("Backend.Models.PCStore", null)
-                        .WithMany()
-                        .HasForeignKey("InStoresID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Backend.Models.PCPart", null)
-                        .WithMany()
-                        .HasForeignKey("PartsAvailableID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Backend.Models.UserAccount", b =>
