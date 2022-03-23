@@ -1,0 +1,13 @@
+footer{
+    height: 90px;
+    flex: 0 0 90px;
+    color: rgb(243, 242, 201);
+    background: rgba(0, 54, 56, .98);
+    font-weight: bolder;
+    text-align: center;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+}

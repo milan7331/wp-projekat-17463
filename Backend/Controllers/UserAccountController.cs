@@ -43,20 +43,20 @@ namespace Backend.Controllers
         }
 
         [HttpGet]
-        [Route("ReturnAccountOrders/{id}")]
-        public async Task<ActionResult> ReturnAccountOrders(int id)
+        [Route("ReturnAccountWithOrders/{name}/{lastname}/{mail}")]
+        public async Task<ActionResult> ReturnAccountWithOrdersFromBody(string name, string lastname, string mail)
         {
-            if(id < 0 || Context.UserAccounts.Find(id) == null)
-                return BadRequest("Korisnik nije u bazi!");
+            if(name == null || lastname == null || mail == null)
+                return BadRequest("Korisnik nije validan!");
             try
             {
-                    var orders = await Context.UserAccounts.Where(p => p.ID == id)
-                        .Include(p => p.Orders)
-                        .ThenInclude(p => p.Buyer)
-                        .Include(p => p.Orders)
-                        .ThenInclude(p => p.FromStore)
-                        .ToListAsync();
-                    return Ok(orders);
+                    var user = await Context.UserAccounts.Where(u => u.FirstName == name && u.LastName == lastname && u.MailAddress == mail)
+                    .Include(p => p.Orders)
+                    .ThenInclude(p => p.Part)
+                    .Include(p => p.Orders)
+                    .ThenInclude(p => p.FromStore)
+                    .ToListAsync();
+                    return Ok(user);
             }
             catch(Exception e)
             {
@@ -65,8 +65,9 @@ namespace Backend.Controllers
         }
 
 
-        [Route("AddUserAccount")]
+       
         [HttpPost]
+        [Route("AddUserAccount")]
         public async Task<ActionResult> AddAccount([FromBody] UserAccount user)       // FromForm??
         {
             if(string.IsNullOrWhiteSpace(user.FirstName) || user.FirstName.Length > 50)

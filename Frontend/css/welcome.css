@@ -1,0 +1,29 @@
+.contentWelcome{
+    display: flex;
+    flex-flow: column nowrap;
+    flex: 1 1 content;
+    justify-content: center;
+    align-items: center;
+
+    margin: 2%;
+    padding: 5%;
+    border-radius: 25px;
+    text-align: center;
+    background: rgba(243, 242, 201, .90);
+    color: rgb(5, 80, 82);
+}
+
+.titleWelcome{
+    font-size:500%;
+}
+.welcomeButton{
+    flex: 0 0 content;
+    width: 200px;
+    height: 50px;
+}
+
+@media screen and (max-width: 600px){
+    .titleWelcome{
+        font-size:200%;
+    }
+}

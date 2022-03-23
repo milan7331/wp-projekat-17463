@@ -1,0 +1,76 @@
+.loginFormDIV{
+    display: flex;
+    flex-flow: column wrap;
+
+    width: 600px;
+    flex: 1 1 content;
+    margin: 2%;
+    padding: 5%;
+    border-radius: 25px;
+    background: rgba(243, 242, 201, .90);
+    color: rgb(5, 80, 82);
+}
+.loginFormTitle{
+    width: 100%;
+    flex: 0 0 content;
+    font-size: 300%;
+    padding-bottom: 5px;
+}
+.loginInputFields{
+    width: 100%;
+    flex: 0 0 content;
+    border-radius: 10px;
+
+    border: 5px solid rgb(5, 80, 82);
+    color: rgb(0, 54, 56);
+    
+    background-color: rgb(83, 184, 187);
+    font-size: 200%;
+}
+.loginButton{
+    width: 250px;
+    flex: 0 0 content;
+    align-self: flex-end;
+}
+.userInfoDIV{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    row-gap: 20px;
+
+
+    flex: 1 1 content;
+    margin: 2%;
+    padding: 50px;
+    border-radius: 25px;;
+    background: rgba(243, 242, 201, .90);
+    color: rgb(5, 80, 82);
+}
+
+.pictureDIV{
+    display: flex;
+    flex-flow: row nowrap;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    padding-right: 15px;
+    
+}
+.purchaseLocationDIV{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+.productPicture{
+    height: 100px;
+    flex: 0 0 content;
+}
+.removeAccountButton{
+    width: 250px;
+    flex: 0 0 content;
+    align-self: flex-end;
+    background-color: firebrick;
+    color: white;
+}

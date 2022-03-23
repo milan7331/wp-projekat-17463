@@ -1,0 +1,113 @@
+
+.contentCatalog{
+    width: 100%;
+}
+.catalogBoxDIV{
+    display: flex;
+    flex-flow: row nowrap;
+
+    justify-content: center;
+    flex: 1 1 content;
+    margin: 2%;
+    padding: 5%;
+    border-radius: 25px;
+    background: rgba(243, 242, 201, .90);
+    color: rgb(5, 80, 82);
+    row-gap: 5px;
+    gap: 30px;
+}
+.catalogDIV{
+    display: flex;
+    flex-flow: column nowrap;
+    row-gap: 5px;
+    flex: 0 0 content;
+    width: 600px;
+
+}
+
+.categoryDIV{
+    height: 50px;
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+
+    flex: 0 0 content;
+}
+.categoryButton{
+    height: 50px;
+    flex: 0 0 content;
+    align-self: flex-end;
+
+ }
+
+.catalogSelect{
+    height: 100%;
+    margin-right: 15px;
+
+    border-radius: 10px;
+
+    border: 5px solid rgb(5, 80, 82);
+    color: rgb(0, 54, 56);
+    
+    
+    background-color: rgb(83, 184, 187);
+    font-size: 200%;
+    
+    flex: 0 0 content;
+}
+
+.userDIV{
+    display: flex;
+    flex-flow: column nowrap;
+
+    width: 500px;
+    flex: 0 0 content;
+    justify-content: flex-start;
+    align-items: stretch;
+
+}
+.catalogFormTitle{
+    font-size: 290%;
+    align-self: center;
+}
+.storeSelect{
+    height: 100%;
+    margin-right: -15px;
+
+    border-radius: 10px;
+
+    border: 5px solid rgb(5, 80, 82);
+    color: rgb(0, 54, 56);
+    
+    
+    background-color: rgb(83, 184, 187);
+    font-size: 200%;
+    
+    flex: 0 0 content;
+}
+.catalogInputFields{
+    width: 100%;
+    flex: 0 0 content;
+    border-radius: 10px;
+
+    border: 5px solid rgb(5, 80, 82);
+    color: rgb(0, 54, 56);
+    
+    background-color: rgb(83, 184, 187);
+    font-size: 200%;
+}
+.catalogBuyButton{
+    margin-right: -15px;
+    margin-top: 5px;
+    width: 250px;
+    flex: 0 0 content;
+    align-self: flex-end;
+}
+
+@media screen and (max-width: 600px) {
+    .catalogBoxDIV{
+        flex-flow: row wrap-reverse;
+    }
+}

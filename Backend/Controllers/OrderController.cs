@@ -102,7 +102,9 @@ namespace Backend.Controllers
 
                     await Context.Orders.AddAsync(order);
                     await Context.SaveChangesAsync();
-                    return Ok("Porudžbina uspešno uneta u bazu!");
+
+                    var returnOrder = await Context.Orders.Where(o => o.Quantity == quantity && o.Price == price && o.Buyer == buyer&& o.Part == part&& o.FromStore == store).FirstOrDefaultAsync();
+                    return Ok(returnOrder.ID);
             }
             catch(Exception e)
             {

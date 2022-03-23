@@ -13,55 +13,6 @@ body, html{
     background-image: url("/Frontend/images/background1.jpg");
     background-repeat: repeat;
 }
-.navbar{
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    align-items: center;
-    height: 50px;
-    flex: 0 0 50px;
-    padding-left: 2%;
-    padding-right: 1%;
-    
-    background: rgba(0, 54, 56, .98);
-}
-.navbarTitle{
-    color: rgb(243, 242, 201);
-    font-weight: bolder;
-    flex-basis: content;
-}
-.navbarButtons{
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-end;
-    align-items: center;
-    
-}
-
-.buttonLight{
-    width: 7%;
-    height: 70%;
-    border-radius: 10px;
-    border-width: 5px;
-    flex-shrink: 0;
-    flex-basis:content;
-    border: 4px solid rgb(243, 242, 201);
-    color:rgb(243, 242, 201);
-    font-size: 80%;
-    
-    
-    background-color:rgb(5, 80, 82);
-}
-.buttonLight:hover{
-    transition-duration: 0.3s;
-    background-color:rgb(83, 184, 187);
-}
-.buttonLight:active{
-    transition-duration: 0s;
-    color: rgb(5, 80, 82);
-    border-color: rgb(5, 80, 82);
-}
-
 .mainContent{
     display: flex;
     flex-flow: column nowrap;
@@ -69,110 +20,10 @@ body, html{
     justify-content: center;
     align-items: center;
 }
-.contentWelcome{
-    display: flex;
-    flex-flow: column nowrap;
-    flex: 1 1 content;
-    justify-content: center;
-    align-items: center;
 
-    
-    margin: 2%;
-    padding: 5%;
-    border-radius: 25px;
-    text-align: center;
-    background: rgba(243, 242, 201, .90);
-    color: rgb(5, 80, 82);
-}
-
-.titleWelcome{
-    font-size:500%;
-}
-.welcomeButton{
-    width: 20%;
-    height: 10%;
-}
-.buttonDark{
-
-
-    flex-basis: content;
-
-    border-radius: 10px;
-    border-width: 5px;
-
+.catalogTable, .accountTable, .accountOrdersTable, th, tr, td{
     border: 5px solid rgb(5, 80, 82);
     color: rgb(0, 54, 56);
-    
-    
-    background-color: rgb(83, 184, 187);
-    font-size: 200%;
-
-}
-.buttonDark:hover{
-    transition-duration: 0.3s;
-    background-color:rgb(243, 242, 201);
-}
-.buttonDark:active{
-    transition-duration: 0s;
-    color: rgb(83, 184, 187);
-    border-color: rgb(83, 184, 187);
-}
-
-.contentCatalog{
-    display: flex;
-    flex-flow: row wrap-reverse;
-
-
-    flex: 1 1 content;
-    margin: 2%;
-    padding: 5%;
-    border-radius: 25px;;
-    background: rgba(243, 242, 201, .90);
-    color: rgb(5, 80, 82);
-}
-
-.catalogDIV{
-    display: flex;
-    flex-flow: column nowrap;
-
-}
-
-.categoryDIV{
-    height: 50px;
-    width: 100%;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-    align-items: center;
-
-    flex: 0 0 content;
-
-    margin-bottom: 5px;
-}
-
-.catalogSelect{
-    height: 100%;
-    margin-right: 15px;
-
-    border-radius: 10px;
-
-    border: 5px solid rgb(5, 80, 82);
-    color: rgb(0, 54, 56);
-    
-    
-    background-color: rgb(83, 184, 187);
-    font-size: 200%;
-    
-    flex: 0 0 content;
-}
-.categoryButton{
-   height: 100%;
-}
-
-.catalogTable, th, tr, td{
-    border: 5px solid rgb(5, 80, 82);
-    color: rgb(0, 54, 56);
-    border-radius: 10px;
     text-align: center;
     border-collapse: collapse;
 }
@@ -180,32 +31,3 @@ td{
     padding-left: 5px;
     padding-right: 5px;
 }
-
-.pictureDIV{
-    display: flex;
-    flex-flow: row nowrap;
-    height: 100px;
-    justify-content: flex-start;
-    align-items: center;
-    
-}
-.productPicture{
-    height: 100px;
-    flex: 0 0 content;
-}
-
-footer{
-    height: 90px;
-    flex: 0 0 90px;
-    color: rgb(243, 242, 201);
-    background: rgba(0, 54, 56, .98);
-    font-weight: bolder;
-
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-
-
