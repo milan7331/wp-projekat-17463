@@ -1,5 +1,6 @@
 # WebStore 17463
-This is a simple web store demo, it was created for one of my university courses using a combination of `HTML + CSS + JavaScript ES6` for the frontend and a `.NET 5 Web API` for the backend.
+This is a simple web store demo, it was created for one of my university courses using a combination of `HTML + CSS + JavaScript ES6`.
+A basic CRUD `.NET 5 Web API` was used as the backend.
 
 ## The welcome page
 Used as a simple greeting page with a quick description featuring a navbar for quick access.
